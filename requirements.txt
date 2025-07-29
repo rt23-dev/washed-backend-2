@@ -6,3 +6,4 @@ moviepy
 mediapipe
 opencv-python
 flask-cors
+gunicorn
