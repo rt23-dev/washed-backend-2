@@ -3,5 +3,5 @@ python-dotenv
 openai
 supabase
 moviepy
-mediapipe
+mediapipe-silicon
 opencv-python
