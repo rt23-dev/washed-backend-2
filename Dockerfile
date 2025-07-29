@@ -21,6 +21,5 @@ RUN pip install -r requirements.txt
 # Expose the port Flask runs on
 EXPOSE 5000
 
-# Run the Flask app (change app.py if needed)
-ENTRYPOINT ["python3", "-m", "gunicorn"]
-CMD ["--bind", "0.0.0.0:5000", "app:app"]
+# Start the app with gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
