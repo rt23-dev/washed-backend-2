@@ -5,3 +5,4 @@ supabase
 moviepy
 mediapipe
 opencv-python
+flask-cors
