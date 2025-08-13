@@ -16,7 +16,7 @@ Make sure to format the feedback in a clear and structured way, suitable for a u
 """
 
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-5",
         messages=[
             {"role": "system", "content": "You are a helpful and encouraging golf coach."},
             {"role": "user", "content": prompt}
