@@ -1,19 +1,20 @@
 FROM python:3.10-slim
 
-# Install system dependencies needed for mediapipe
-RUN apt-get update && apt-get install -y \
+# Ensure apt works on recent Debian changes
+RUN apt-get update --fix-missing && apt-get install -y \
+    ca-certificates \
     cmake \
     build-essential \
     libgl1-mesa-glx \
     libglib2.0-0 \
-    && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/*
 
 # Copy all files
 COPY . .
 
 # Install Python dependencies
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose the port Flask runs on
 EXPOSE 5000
