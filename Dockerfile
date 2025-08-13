@@ -1,20 +1,18 @@
-FROM python:3.10-slim
+# Use full Debian-based Python image (comes with build tools + common libs preinstalled)
+FROM python:3.10-bullseye
 
-# Update apt sources to use Debian archive (fixes broken mirrors for bullseye)
-RUN sed -i 's|deb.debian.org|archive.debian.org|g' /etc/apt/sources.list \
- && sed -i '/security.debian.org/s/^/#/' /etc/apt/sources.list \
- && apt-get update && apt-get install -y \
-    cmake \
-    build-essential \
+# Make sure CA certificates and build tools are present
+RUN apt-get update -o Acquire::ForceIPv4=true && apt-get install -y \
     libgl1-mesa-glx \
     libglib2.0-0 \
  && rm -rf /var/lib/apt/lists/*
 
+# Copy all files
 COPY . .
 
+# Install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
-
 
 # Expose the port Flask runs on
 EXPOSE 5000
